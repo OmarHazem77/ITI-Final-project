@@ -1,0 +1,92 @@
+<div class="container-fluid p-0">
+  <!-- Hero / Banner -->
+  <section class="hero d-flex align-items-center text-white">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold">MovieApp</h1>
+      <p class="lead mb-4">
+        Stream, discover, and explore your favorite movies anytime, anywhere.
+      </p>
+      <button class="btn btn-warning btn-lg">Start Watching</button>
+    </div>
+  </section>
+
+  <!-- Search & Filters -->
+  <section class="bg-light py-4 border-bottom">
+    <div class="container">
+      <div class="row g-2 align-items-center">
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for movies..."
+            [(ngModel)]="searchText"
+            (input)="searchMovies()"
+          />
+        </div>
+        <div class="col-md-4">
+          <select class="form-select">
+            <option value="">All Categories</option>
+            @for (category of categories; track $index) {
+              <option>{{ category }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Movies Grid -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-4 fw-bold">Latest Movies</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+        <!-- Loop -->
+        @for (movie of movies; track $index) {
+        <div class="col">
+          <a [routerLink]="['/movieDetails', movie.id]" class="text-decoration-none">
+            <div class="card h-100 shadow-lg border-0 movie-card">
+              
+              <!-- Poster + Rating -->
+              <div class="position-relative">
+                <img
+                  [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                  class="card-img-top"
+                  alt="{{ movie.title }}"
+                />
+
+                <!-- ✅ Rating Circle with dynamic color -->
+                <div 
+                  class="rating-circle"
+                  [ngClass]="{
+                    'good': (movie.vote_average * 10) >= 70,
+                    'medium': (movie.vote_average * 10) >= 50 && (movie.vote_average * 10) < 70,
+                    'bad': (movie.vote_average * 10) < 50
+                  }"
+                >
+                  <span>{{ (movie.vote_average * 10).toFixed(0) }}%</span>
+                </div>
+              </div>
+
+              <!-- Info -->
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold text-dark mb-1">
+                  {{ movie.title }}
+                </h5>
+                <p class="card-text text-muted mb-3">
+                  {{ movie.release_date }}
+                </p>
+                <button class="btn btn-outline-warning mt-auto">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        } @empty {
+        <p>No Movies Found!</p>
+        }
+      </div>
+    </div>
+  </section>
+</div>

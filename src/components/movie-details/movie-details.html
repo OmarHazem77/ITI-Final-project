@@ -1,0 +1,67 @@
+<div class="container py-5">
+  <div class="row g-4">
+    <!-- Poster -->
+    <div class="col-md-4">
+      <div class="shadow-sm rounded overflow-hidden">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="img-fluid rounded"
+          alt="{{ movie.title }}"
+        />
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div class="col-md-8 text-white bg-dark p-4 rounded shadow-sm">
+      <h1 class="fw-bold mb-3">{{ movie.title }}</h1>
+      <p class="text-muted mb-1">Released: {{ movie.release_date }}</p>
+
+      <span class="badge bg-warning text-dark mb-3">
+        ⭐ {{ movie.vote_average.toFixed(1) }}
+      </span>
+
+      <p class="lead">{{ movie.overview }}</p>
+
+      <div class="mt-4">
+        <button routerLink="/" class="btn btn-outline-light me-2">
+          ⬅ Back to Movies
+        </button>
+        <button class="btn btn-warning">▶ Watch Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  <section class="mt-5">
+    <h3 class="fw-bold mb-4 text-dark">Recommendations</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
+      @for (movie of allMovies; track $index) {
+      <div class="col" >
+        <a [routerLink]="['/movieDetails', movie.id]" class="text-decoration-none">
+          <div class="card h-100 shadow-sm border-0 bg-dark text-white">
+            <div class="position-relative">
+              <img
+                [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                class="card-img-top rounded"
+                alt="{{ movie.title }}"
+              />
+              <!-- Vote Average Badge -->
+              <span
+                class="position-absolute bottom-0 start-0 translate-middle p-2 badge rounded-circle bg-warning text-dark"
+              >
+                {{ movie.vote_average.toFixed(1) }}
+              </span>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">{{ movie.title }}</h6>
+              <p class="text-muted small mb-0">
+                {{ movie.release_date }}
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    }
+    </div>
+  </section>
+</div>

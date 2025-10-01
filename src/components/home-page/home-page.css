@@ -1,0 +1,112 @@
+/* Hero Section */
+.hero {
+  background: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+  min-height: 60vh;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Movie Card */
+.card-img-container {
+  position: relative;
+}
+.card-img-container img {
+  height: 320px;
+  object-fit: cover;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+.rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: 600;
+}
+a{
+  text-decoration: none;
+}
+.movie-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  height: 350px;
+}
+
+.rating-circle {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+}
+.movie-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  height: 350px;
+}
+
+.rating-circle {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #000;       /* الخلفية سودة */
+  color: #fff;            /* النص أبيض */
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 50%;     /* علشان تبقى دايرة */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff; /* default border */
+  transition: border-color 0.3s ease;
+}
+
+/* ألوان حسب التقييم */
+.rating-circle.good {
+  border-color: #21d07a; /* أخضر */
+}
+.rating-circle.medium {
+  border-color: #d2d531; /* أصفر */
+}
+.rating-circle.bad {
+  border-color: #db2360; /* أحمر */
+}
